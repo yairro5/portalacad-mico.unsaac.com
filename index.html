@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portal Académico</title>
+<style>.dashboard{
+display:none;
+background:#f4f6fb;
+min-height:100vh;
+}
+
+.header{
+background:#8b1123;
+color:white;
+padding:15px;
+font-size:20px;
+font-weight:bold;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.container{
+padding:15px;
+}
+
+.welcome-card{
+background:white;
+border-radius:15px;
+padding:20px;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+margin-bottom:15px;
+}
+
+.student-photo{
+width:120px;
+height:120px;
+border-radius:50%;
+background:#ff6356;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:60px;
+margin:auto;
+margin-top:15px;
+}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px;
+margin-bottom:15px;
+}
+
+.stat{
+background:white;
+padding:15px;
+border-radius:12px;
+text-align:center;
+box-shadow:0 3px 10px rgba(0,0,0,.1);
+}
+
+.stat b{
+display:block;
+font-size:24px;
+color:#8b1123;
+}
+
+.quick{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px;
+}
+
+.quick-card{
+background:#f2a23a;
+color:white;
+padding:20px;
+border-radius:12px;
+text-align:center;
+font-weight:bold;
+cursor:pointer;
+}
+
+.notice{
+background:white;
+padding:15px;
+border-radius:12px;
+margin-top:15px;
+box-shadow:0 3px 10px rgba(0,0,0,.1);
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:Arial,sans-serif;background:#f4f6fb;color:#2b2f38;}
+.hidden{display:none!important;}
+:root{
+  --rojo:#8b1123;
+  --rojo2:#74101d;
+  --dorado:#f2a23a;
+  --gris:#f1f3f6;
+  --texto:#2d3440;
+}
+
+/* LOGIN */
+.login-page{min-height:100vh;display:flex;flex-direction:column;background:linear-gradient(rgba(255,255,255,.76),rgba(255,255,255,.82)),radial-gradient(circle at top,#ffffff 0,#e8f6ff 40%,#f6dada 100%);}
+.login-bar{height:86px;background:var(--rojo);color:white;display:flex;align-items:center;justify-content:space-between;padding:0 28px;box-shadow:0 5px 14px rgba(0,0,0,.22);}
+.comp-logo{display:flex;align-items:center;gap:13px;font-weight:800;font-size:18px;letter-spacing:.3px;}
+.logo-box{width:45px;height:45px;border-radius:10px;background:linear-gradient(135deg,#ffb23d,#d82056);display:grid;place-items:center;font-size:24px;}
+.hamb{font-size:38px;font-weight:bold;}
+.login-content{flex:1;display:flex;flex-direction:column;align-items:center;padding:24px 14px;}
+.login-title{margin:8px 0 15px;color:#9a1328;font-size:36px;font-weight:500;text-align:center;letter-spacing:.5px;}
+.login-avatar{width:180px;height:180px;border-radius:50%;background:#ff6356;display:grid;place-items:center;box-shadow:0 12px 24px rgba(140,17,35,.18);margin-bottom:22px;}
+.login-avatar span{font-size:95px;}
+.login-card{width:100%;max-width:650px;background:white;border-radius:10px;padding:26px 32px;box-shadow:0 12px 32px rgba(0,0,0,.18);}
+.input-group{position:relative;margin-bottom:17px;}
+.input-group input{width:100%;height:59px;border:2px solid #d5d8df;border-radius:6px;padding:0 48px 0 22px;font-size:22px;outline:none;}
+.input-group input:focus{border-color:var(--dorado);}
+.eye{position:absolute;right:16px;top:16px;color:#777;font-size:24px;cursor:pointer;}
+.login-btn{display:block;margin:2px auto 0;background:var(--dorado);color:white;border:0;border-radius:12px;padding:15px 30px;font-size:22px;font-weight:600;cursor:pointer;}
+.divider{display:flex;align-items:center;gap:18px;color:#8e939c;margin:29px 0 20px;font-size:20px;}
+.divider:before,.divider:after{content:"";height:1px;background:#d9d9d9;flex:1;}
+.google{height:64px;border:2px solid #dedede;border-radius:7px;display:flex;align-items:center;justify-content:center;gap:14px;font-size:22px;font-weight:700;color:#444;}
+.google b{color:#4285f4;font-size:28px;}
+.forgot{text-align:center;color:#bd3b4d;font-size:20px;margin-top:25px;}
+.helper{text-align:center;font-size:19px;color:#5d6470;line-height:1.45;}
+.login-footer{background:var(--rojo);color:white;text-align:center;padding:18px;font-size:18px;}#notasPanel{
+padding:15px;
+overflow-x:auto;
+}
+
+#tablaNotas{
+width:100%;
+min-width:700px;
+border-collapse:collapse;
+background:white;
+}
+
+#tablaNotas th{
+background:#8b1123;
+color:white;
+padding:10px;
+font-size:14px;
+}
+
+#tablaNotas td{
+padding:10px;
+border-bottom:1px solid #ddd;
+text-align:center;
+font-size:14px;
+}
+
+#tablaNotas td:first-child{
+text-align:left;
+min-width:220px;
+}
+</style>
+</head>
+<body>
+
+<section id="loginPage" class="login-page">
+  <div class="login-bar">
+    <div class="comp-logo">
+      <div class="logo-box">▦</div>
+      <div>CENTRO DE<br>CÓMPUTO</div>
+    </div>
+    <div class="hamb">☰</div>
+  </div>
+
+  <div class="login-content">
+    <h1 class="login-title">INICIO DE SESIÓN ALUMNO</h1>
+    <div class="login-avatar"><span>🎓</span></div>
+
+    <div class="login-card">
+      <div class="input-group">
+        <input id="codigo" placeholder="Código de alumno">
+      </div>
+      <div class="input-group">
+        <input id="clave" type="password" placeholder="Contraseña">
+        <span class="eye" onclick="verClave()">👁</span>
+      </div>
+
+      <button class="login-btn" onclick="login()">Iniciar sesión</button>
+
+      <div class="divider">o continúa con</div>
+      <div class="google"><b>G</b> Continuar con Google</div>
+
+      <p class="forgot">¿Olvidaste tu contraseña? Clic aquí</p>
+      <p class="helper"><b>Clave inicial: tu DNI.</b> Al primer ingreso cámbiala por una contraseña personal.</p>
+    </div>
+  </div>
+
+  <div class="login-footer">© Centro de Cómputo - Portal académico</div>
+</section><div id="dashboard" class="dashboard">
+
+<div class="header">
+Portal Académico
+<button onclick="salir()">Salir</button>
+</div>
+
+<div class="container">
+
+<div class="welcome-card">
+
+<h2>
+Bienvenido
+VILCA-USCAMAYTA-YAIR ROBERT
+</h2>
+
+<p><b>Código:</b> 200561</p>
+
+<p><b>Carrera:</b> QUÍMICA</p>
+
+<p><b>Semestre ingreso:</b> 2020-1</p>
+
+<p><b>Semestre actual:</b> 2026-1</p>
+
+<div class="student-photo">
+🎓
+</div>
+
+</div>
+
+<div class="stats">
+
+<div class="stat">
+Promedio
+<b>12.85</b>
+</div>
+
+<div class="stat">
+Créditos
+<b>186</b>
+</div>
+
+<div class="stat">
+Estado
+<b>Regular</b>
+</div>
+
+</div>
+
+<div class="quick">
+
+<div class="quick-card">
+Constancia de Matrícula
+</div>
+
+<div class="quick-card" onclick="mostrarNotas()">
+Constancia de Notas
+</div>
+
+<div class="quick-card">
+Actualización de Datos
+</div>
+
+</div>
+
+<div class="notice">
+🔔 Bienvenido al Portal Académico.
+</div>
+
+<div class="notice">
+📢 Revise periódicamente sus evaluaciones.
+</div>
+
+</div>
+
+</div>
+<div id="notasPanel" class="hidden">
+
+<h2 style="text-align:center;color:#8b1123;">
+CONSTANCIA DE NOTAS
+</h2>
+
+<table id="tablaNotas">
+
+<thead>
+<tr>
+<th>Curso</th>
+<th>Créditos</th>
+<th>Unidades</th>
+<th>P1</th>
+<th>P2</th>
+<th>P3</th>
+<th>Promedio</th>
+</tr>
+</thead>
+
+<tbody></tbody>
+
+</table>
+
+</div>
+<script>
+function login(){
+  const codigo=document.getElementById("codigo").value.trim();
+  const clave=document.getElementById("clave").value;
+  if(codigo==="200561" && clave==="Tulokityair.5"){
+    document.getElementById("loginPage").style.display="none";
+    document.getElementById("dashboard").style.display="block";
+} else {
+    alert("Código o contraseña incorrectos");
+  }
+}
+function verClave(){
+  const input=document.getElementById("clave");
+  input.type=input.type==="password"?"text":"password";
+}
+function salir(){
+document.getElementById("dashboard").style.display="none";
+document.getElementById("loginPage").style.display="flex";
+}
+
+function mostrarNotas(){
+
+document.getElementById("notasPanel").classList.remove("hidden");
+
+document.getElementById("notasPanel").style.display="block";
+
+cargarNotas();
+
+}
+
+function cargarNotas(){
+  const tbody = document.querySelector("#tablaNotas tbody");
+  tbody.innerHTML=""; // limpia la tabla
+
+  const cursos=[
+    {curso:"Física III",creditos:3,p1:15,p2:0,p3:null},
+    {curso:"Ecuaciones Diferenciales",creditos:4,p1:16,p2:0,p3:0},
+    {curso:"Trabajo de Investigación",creditos:3,p1:14,p2:0,p3:null},
+    {curso:"Toxicología General",creditos:4,p1:14,p2:0,p3:0},
+    {curso:"Gestión de Laboratorio y Calidad",creditos:2,p1:15,p2:0,p3:null},
+    {curso:"Química y Tratamiento de Aguas",creditos:3,p1:14,p2:0,p3:null}
+  ];
+
+  cursos.forEach(c=>{
+    const unidades = c.creditos===4?3:2;
+    const valores = c.creditos===4?[c.p1,c.p2,c.p3]:[c.p1,c.p2];
+    const promedio = (valores.reduce((a,b)=>a+Number(b),0)/valores.length).toFixed(2);
+    tbody.innerHTML += `
+      <tr>
+        <td>${c.curso}</td>
+        <td>${c.creditos}</td>
+        <td>${unidades}</td>
+        <td>${c.p1}</td>
+        <td>${c.p2}</td>
+        <td>${c.p3===null?"-":c.p3}</td>
+        <td>${promedio}</td>
+      </tr>
+    `;
+  });
+}
+</script>
+div id="notasPanel" class="hidden">
+
+
+
+</body>
+</html>
