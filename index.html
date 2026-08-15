@@ -326,13 +326,13 @@ function cargarNotas(){
   tbody.innerHTML=""; // limpia la tabla
 
   const cursos=[
-    {curso:"Física III",creditos:3,p1:15,p2:0,p3:null},
-    {curso:"Ecuaciones Diferenciales",creditos:4,p1:16,p2:0,p3:0},
-    {curso:"Trabajo de Investigación",creditos:3,p1:14,p2:0,p3:null},
-    {curso:"Toxicología General",creditos:4,p1:14,p2:0,p3:0},
-    {curso:"Gestión de Laboratorio y Calidad",creditos:2,p1:15,p2:0,p3:null},
-    {curso:"Química y Tratamiento de Aguas",creditos:3,p1:14,p2:0,p3:null}
-  ];
+  {curso:"Física III",creditos:3,p1:15,p2:15.4,p3:null},
+  {curso:"Ecuaciones Diferenciales",creditos:4,p1:16,p2:15.2,p3:15.5},
+  {curso:"Trabajo de Investigación",creditos:3,p1:14,p2:15,p3:null},
+  {curso:"Toxicología General",creditos:4,p1:14,p2:14.2,p3:14.5},
+  {curso:"Gestión de Laboratorio y Calidad",creditos:2,p1:15,p2:14.8,p3:null},
+  {curso:"Química y Tratamiento de Aguas",creditos:3,p1:14,p2:15,p3:null}
+];
 
   cursos.forEach(c=>{
     const unidades = c.creditos===4?3:2;
